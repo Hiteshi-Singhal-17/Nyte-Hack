@@ -24,7 +24,7 @@ fun changeNarratorMood() {
     val mood: String
     val modifier: (String) -> String
 
-    when (Random.nextInt(1..5)) {
+    when (Random.nextInt(1..7)) {
         1 -> {
             mood = "loud"
             modifier = { message ->
@@ -55,6 +55,45 @@ fun changeNarratorMood() {
                 // Example of closure.
                 narrationsGiven++
                 "$message.\n(I have narrated $narrationsGiven things)"
+            }
+        }
+
+        5 -> {
+            mood = "lazy"
+            modifier = { message ->
+                message.take(message.length / 2)
+            }
+        }
+
+        6 -> {
+            mood = "leet"
+            modifier = { message ->
+                val leetMapping = mapOf(
+                    'a' to '4',
+                    'e' to '3',
+                    'l' to '1',
+                    'o' to '0',
+                    't' to '7'
+                    // Add more mappings as needed
+                )
+                message.lowercase().map { leetMapping[it] ?: it }.joinToString("")
+            }
+        }
+
+        7 -> {
+            mood = "poetic"
+            modifier = { message ->
+                val words = message.split(" ")
+                val builder = StringBuilder()
+                for (word in words) {
+                    builder.append(word)
+                    if (Random.nextBoolean()) { // Randomly decide whether to add a newline
+                        builder.append("\n")
+                    } else {
+                        builder.append(" ")
+                    }
+                }
+                builder.toString().trimEnd() // remove trailing whitespace
             }
         }
 
