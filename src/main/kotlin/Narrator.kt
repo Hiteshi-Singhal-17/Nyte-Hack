@@ -8,20 +8,20 @@ It's both convenience and necessity of syntax, because it could be ambiguous to 
 function the return is from: the lambda expression itself or the function that called it.
 "It" is used when lambda accepts one argument only.
  */
-var narrationModifier: (String) -> String = {it}
+var narrationModifier: (String) -> String = { it }
 
 /**
  * Hosting narrator and its mood
  */
 fun narrate(
     message: String,
-    modifier: (String) -> String = {narrationModifier(it)}
+    modifier: (String) -> String = { narrationModifier(it) }
 ) {
     println(narrationModifier(message))
 }
 
 fun changeNarratorMood() {
-    val mood : String
+    val mood: String
     val modifier: (String) -> String
 
     when (Random.nextInt(1..5)) {
@@ -48,7 +48,7 @@ fun changeNarratorMood() {
             }
         }
 
-        4-> {
+        4 -> {
             var narrationsGiven = 0
             mood = "like something an itemized bill"
             modifier = { message ->
