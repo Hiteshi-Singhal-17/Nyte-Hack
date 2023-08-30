@@ -15,19 +15,34 @@ private val menuData = File("src/main/data/tavern-menu-data.txt")
 
 
 
-
-private val menuItems = List(menuData.size) { index ->
-    val (_, name, _) = menuData[index].split(",")
-    name
+/*
+Using map transformer function to iterate over menuData: List<String>
+returning a list holding the names of dishes.
+ */
+private val menuItems: List<String> = menuData.map { menuEntry:String ->
+    val (_,name,_) = menuEntry.split(",")
+    name // Lambda returns the last sentence of function; irrespective of return
 }
 
-private val menuItemsPrices: Map<String, Double> = List(menuData.size) { index ->
-    val (_, name, price) = menuData[index].split(",")
-    name to price.toDouble()
-}.toMap()
+/*
+Initially, using map transformer function to iterate over menuData: List<String>, returning
+List<Pair<String,Double>>, converting to map using toMap()
 
-val menuItemTypes: Map<String, String> = List(menuData.size) { index ->
-    val (type, name, _) = menuData[index].split(",")
+Associate returns map, thereby making code more precise.
+ */
+private val menuItemsPrices: Map<String, Double> = menuData.associate { menuEntry: String ->
+    val (_, name, price) = menuEntry.split(",")
+    name to price.toDouble()
+}
+
+/*
+Initially, using map transformer function to iterate over menuData: List<String>, returning
+List<Pair<String,Double>>, converting to map using toMap()
+
+Associate returns map, thereby making code more precise.
+ */
+val menuItemTypes: Map<String, String> = menuData.map { menuEntry:String ->
+    val (type, name, _) = menuEntry.split(",")
     name to type
 }.toMap()
 
