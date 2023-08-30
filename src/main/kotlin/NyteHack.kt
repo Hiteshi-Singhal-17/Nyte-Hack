@@ -1,13 +1,23 @@
+var heroName: String = ""
 fun main() {
     // ::makeYellow -> Example of function reference.
-    narrate("A hero enters the town of Kronstadt. What is their name?", ::makeYellow)
-    val heroName = readlnOrNull() ?: ""
-    require(heroName.isNotEmpty()) {
-        "The hero must have a name."
-    }
-
-    changeNarratorMood()
+    heroName = promptHeroName()
     narrate("$heroName, ${createTitle(heroName)} heads to the town square")
+    visitTavern()
+}
+
+private fun promptHeroName(): String {
+    narrate("A hero enters the town of Kronstadt. What is their name?", ::makeYellow)
+//    val heroName = readlnOrNull() ?: ""
+//    require(heroName.isNotEmpty()) {
+//        "The hero must have a name."
+//    }
+//    changeNarratorMood()
+
+
+    // To not enter hero name everytime during development.
+    println("Madrigal")
+    return "Madrigal"
 }
 
 private fun createTitle(name: String): String {
